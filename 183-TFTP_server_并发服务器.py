@@ -9,7 +9,7 @@ from socket import socket
 # 文件库位置
 # file_path = flog.askdirectory(title='选择数据目录')
 file_path = input("输入数据目录: ")
-print(file_path)
+# print(file_path)
 
 
 class Tftpserver():
@@ -17,9 +17,17 @@ class Tftpserver():
         self.connfd = connfd
 
     def do_list(self):
-        filelist = os.listdir(file_path)
+        E = ''
+        filelist = []
+        try:
+            filelist = os.listdir(file_path)
+        except Exception as Ex:
+            E = Ex
+            print("客户端查询路径出错", E)
         if not filelist:
             self.connfd.send('n'.encode())
+            time.sleep(0.5)
+            self.connfd.send(E.encode())
             return None
         else:
             self.connfd.send('y'.encode())
@@ -58,6 +66,7 @@ class Tftpserver():
 
     def do_quit(self):
         print('客户端退出')
+        self.connfd.close()
         sys.exit(0)
 
 
@@ -66,7 +75,7 @@ def main():
     #        print('argv is error')
     #        sys.exit(1)
     host = '0.0.0.0'
-    port = input("输入绑定端口")
+    port = input("输入绑定端口: ")
     if port.isdigit():
         port = int(port)
     else:
