@@ -65,8 +65,8 @@ def main():
     #    if len(sys,argv)<3:
     #        print('argv is error')
     #        sys.exit(1)
-    host = '127.0.0.1'
-    port = 8899
+    host = '0.0.0.0'
+    port = input("输入绑定端口")
     addr = (host, port)
     buffersize = 1024
 
