@@ -70,7 +70,7 @@ class Tftpclient():
 
 
 def main():
-    host = '127.0.0.1'
+    host = input('输入服务器地址：')
     port = int(input('输入服务器端口：'))
     addr = (host, port)
     #    buffersize = 1024
