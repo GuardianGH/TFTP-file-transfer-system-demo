@@ -23,7 +23,8 @@ class Tftpclient():
                 print(f)
             print('文件列表展示完毕')
         else:
-            print('请求失败')
+            E = self.sockfd.recv(128).decode()
+            print('请求失败，服务器返回信息: ', E)
 
     def do_xiazai(self, filename):
         self.sockfd.send(('G ' + filename).encode())
