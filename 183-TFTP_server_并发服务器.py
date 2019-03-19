@@ -67,6 +67,11 @@ def main():
     #        sys.exit(1)
     host = '0.0.0.0'
     port = input("输入绑定端口")
+    if port.isdigit():
+        port = int(port)
+    else:
+        port = 11183
+        print("输入有误，启用默认端口 11183")
     addr = (host, port)
     buffersize = 1024
 
