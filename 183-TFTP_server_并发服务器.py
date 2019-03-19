@@ -3,11 +3,12 @@ import os
 import signal
 import sys
 import time
-import tkinter.filedialog as flog
+# import tkinter.filedialog as flog
 from socket import socket
 
 # 文件库位置
-file_path = flog.askdirectory(title='选择数据目录')
+# file_path = flog.askdirectory(title='选择数据目录')
+file_path = input("输入数据目录: ")
 print(file_path)
 
 
